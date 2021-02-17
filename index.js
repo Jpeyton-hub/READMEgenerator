@@ -3,7 +3,7 @@ const fs = require('fs');
 // prompt from inquirer
 
 const readmePrompt = () =>
-  inquirer.prompt([
+  inquire.prompt([
     {
       type: 'input',
       name: 'title',
