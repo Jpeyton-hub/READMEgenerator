@@ -1,5 +1,8 @@
 const inquire = require('inquirer');
 const fs = require('fs');
+const util = require('util');
+
+const writeFileAsync = util.promisify(fs.writeFile);
 // prompt from inquirer
 
 const readmePrompt = () =>
@@ -25,7 +28,7 @@ const readmePrompt = () =>
       message: 'Input your usage instructions.',
     },
     {
-      type:'checkbox',
+      type:'list',
       name:'license',
       message: 'Which license would you like displayed?',
       choices: ['MIT', 'Apache', 'Boost', 'Eclipse', 'WTFPL']
@@ -70,58 +73,63 @@ const licenseInfo = {
 // template generator function
 
 
-const templateGen = (input) => { 
-    `># ${input.title}
-    ${licenseInfo[input.license].badge}
-    ---
+const templateGen = (input) =>  
+`># ${input.title}
+${licenseInfo[input.license].badge}
+---
 
-    #### ${input.description}
-    ---
+#### ${input.description}
+---
 
-    >## Table of Contents
-    ---
-    - [Installation]()
-    - [Usage]()
-    - [License]()
-    - [Contribution]()
-    - [Tests]()
-    - [Questions]()
+>## Table of Contents
+---
+- [Installation]()
+- [Usage]()
+- [License]()
+- [Contribution]()
+- [Tests]()
+- [Questions]()
     
-    >### Installation
+>### Installation
     
-    ${input.installation}
-    ---
-    
-    >### Usage
-    
-    ${input.usage}
-    ---
+${input.installation}
 
-    >### License
+---
     
-    ${licenseInfo[input.license].info}
-    ---
+>### Usage
+    
+${input.usage}
 
-    >### Contribution
-    
-    ${input.contribution}
-    ---
+---
 
-    >### Tests
+>### License
+    
+${licenseInfo[input.license].info}
 
-    ${input.tests}
-    ---
+---
+
+>### Contribution
     
-    >### Questions
+${input.contribution}
+
+---
+
+>### Tests
+
+${input.tests}
+
+---
     
-    If you have a questions please connect with me on Github [${input.username}](https://github.com/${input.username})
-    or send me an email at <${input.email}>
-    ---
+>### Questions
     
-    #### Thanks for Viewing!`
-};
+If you have a questions please connect with me on Github [${input.username}](https://github.com/${input.username})
+or send me an email at <${input.email}>
+
+---
+    
+#### Thanks for Viewing!`;
+
 
 readmePrompt()
-    .then(input => fs.write('newREADME.md', templateGen(input)))
-    .then(console.log('README generated!'))
+    .then(input => writeFileAsync('newREADME.md', templateGen(input)))
     .catch(err => console.error(err));
