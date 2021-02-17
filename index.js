@@ -2,7 +2,7 @@ const inquire = require('inquirer');
 const fs = require('fs');
 // prompt from inquirer
 
-const promptUser = () =>
+const readmePrompt = () =>
   inquirer.prompt([
     {
       type: 'input',
@@ -28,7 +28,7 @@ const promptUser = () =>
       type:'checkbox',
       name:'license',
       message: 'Which license would you like displayed?',
-      choices: []
+      choices: ['MIT', ]
     },
     {
       type: 'input',
@@ -84,7 +84,7 @@ const templateGen = (input) => {
 
     >### License
     
-    ${licenseInfo}
+    ${input.license}
     ---
 
     >### Contribution
@@ -104,4 +104,9 @@ const templateGen = (input) => {
     ---
     
     #### Thanks for Viewing!`
-}
+};
+
+readmePrompt()
+    .then(input => fs.write('newREADME.md', templateGen(input)))
+    .then(console.log('README generated!'))
+    .catch(err => console.error(err));
