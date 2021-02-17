@@ -28,7 +28,7 @@ const readmePrompt = () =>
       type:'checkbox',
       name:'license',
       message: 'Which license would you like displayed?',
-      choices: ['MIT', ]
+      choices: ['MIT', 'Apache', 'Boost', 'Eclipse', 'WTFPL']
     },
     {
       type: 'input',
