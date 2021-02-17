@@ -52,12 +52,27 @@ const readmePrompt = () =>
     }
   ]);
 
+// Object storing the various license badges and info
 
-// needs title, description, table of contents, installation, usage, license(checkboxes, populate badge and details in license section), contributing, tests and questions(github username into link and email)
+const licenseInfo = {
+    MIT : {badge : '',
+           info : ''},
+    Apache : {badge : '',
+              info : ''},
+    Boost : {badge : '',
+             info : ''},
+    Eclipse : {badge : '',
+               info : ''},
+    WTFPL : {badge : '',
+             info : ''}
+}
+
+// template generator function
 
 
 const templateGen = (input) => { 
     `># ${input.title}
+    ${licenseInfo[input.license].badge}
     ---
 
     #### ${input.description}
@@ -84,7 +99,7 @@ const templateGen = (input) => {
 
     >### License
     
-    ${input.license}
+    ${licenseInfo[input.license].info}
     ---
 
     >### Contribution
