@@ -26,4 +26,6 @@ Please find a gif below demonstrating its usage!
 
 ![Here's how to use it](images/usagegif.gif)
 
+[Link to full usage video](https://drive.google.com/file/d/1rb6l28j_vR7Jk9E17CFysn9PeT6JSRG4/view)
+
 ### Thanks for viewing!!
