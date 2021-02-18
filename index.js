@@ -138,12 +138,12 @@ ${licenseInfo[input.license].badge}
 
 >## Table of Contents
 ---
-- [Installation]()
-- [Usage]()
-- [License]()
-- [Contribution]()
-- [Tests]()
-- [Questions]()
+- [Installation](###Installation)
+- [Usage](###Usage)
+- [License](###License)
+- [Contribution](###Contribution)
+- [Tests](###Tests)
+- [Questions](###Questions)
     
 >### Installation
     
